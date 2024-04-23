@@ -9,10 +9,14 @@ public static partial class ProductNode
             .Ignore(t => t.BrandId)
             .Ignore(t => t.TypeId)
             .Ignore(t => t.AddStock(default))
-            .Ignore(t => t.RemoveStock(default));
+            .Ignore(t => t.RemoveStock(default))
+            .Ignore(t => t.ImageFileName);
     }
 
     public static int InternalId([Parent] Product product) => product.Id;
+
+    public static Uri GetImageUrl([Parent] Product product, HttpContext context)
+        => new($"http://{context.Request.Host}/api/products/{product.Id}/img");
 
     public static async Task<Brand?> GetBrandAsync(
         [Parent] Product product, 

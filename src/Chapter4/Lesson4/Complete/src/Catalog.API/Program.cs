@@ -10,7 +10,8 @@ builder.Services
 builder.Services
     .AddScoped<BrandService>()
     .AddScoped<ProductService>()
-    .AddScoped<ProductTypeService>();
+    .AddScoped<ProductTypeService>()
+    .AddSingleton<ImageStorage>();
 
 builder.Services
     .AddGraphQLServer()
@@ -20,5 +21,6 @@ builder.Services
 var app = builder.Build();
 
 app.MapGraphQL();
+app.MapProductApi();
 
 app.RunWithGraphQLCommands(args);
