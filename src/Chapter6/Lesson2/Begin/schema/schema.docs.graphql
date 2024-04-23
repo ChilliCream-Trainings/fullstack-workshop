@@ -1,0 +1,313 @@
+type Brand implements Node {
+  products(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductsConnection
+  errors: String!
+  id: ID!
+  name: String!
+}
+
+type Product implements Node {
+  internalId: Int!
+  errors: String!
+  imageUrl: URL!
+  nullableErrors: String
+  brand: Brand
+  productType: ProductType
+  id: ID!
+  name: String!
+  description: String
+  price: Decimal!
+  imageFileName: String
+  type: ProductType
+  availableStock: Int!
+  restockThreshold: Int!
+  maxStockThreshold: Int!
+  onReorder: Boolean!
+}
+
+type ProductType implements Node {
+  productsAsync: [Product]!
+  id: ID!
+  name: String!
+  products: [Product!]!
+}
+
+type Query {
+  """
+  Fetches an object given its ID.
+  """
+  node(
+    """
+    ID of the object.
+    """
+    id: ID!
+  ): Node
+
+  """
+  Lookup nodes by a list of IDs.
+  """
+  nodes(
+    """
+    The list of node IDs.
+    """
+    ids: [ID!]!
+  ): [Node]!
+  brands(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): BrandsConnection
+  brandById(id: ID!): Brand
+  brandByName(name: String!): Brand
+  products(
+    where: ProductsFilterInputTypeInput
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductsConnection
+  productById(id: ID!): ProductByIdResult!
+  productTypes(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductTypesConnection
+  productTypeById(id: ID!): ProductType
+  productTypeByName(name: String!): ProductType
+}
+
+"""
+The node interface is implemented by entities that have a global unique identifier.
+"""
+interface Node {
+  id: ID!
+}
+
+"""
+A connection to a list of items.
+"""
+type ProductsConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [ProductsEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Product!]
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  Indicates whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Indicates whether more edges exist prior the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+"""
+An edge in a connection.
+"""
+type ProductsEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Product!
+}
+
+scalar URL @specifiedBy(url: "https://tools.ietf.org/html/rfc3986")
+
+"""
+The built-in `Decimal` scalar type.
+"""
+scalar Decimal
+
+"""
+A connection to a list of items.
+"""
+type BrandsConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [BrandsEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Brand!]
+}
+
+type CustomError implements IMyErrorInterface {
+  message: String!
+  id: Int!
+}
+
+"""
+A connection to a list of items.
+"""
+type ProductTypesConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [ProductTypesEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [ProductType!]
+}
+
+"""
+An edge in a connection.
+"""
+type BrandsEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Brand!
+}
+
+"""
+An edge in a connection.
+"""
+type ProductTypesEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: ProductType!
+}
+
+input ProductsFilterInputTypeInput {
+  brandId: ProductsBrandIdFilterInputTypeInput
+  typeId: ProductsTypeIdFilterInputTypeInput
+}
+
+input ProductsTypeIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+input ProductsBrandIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+interface IMyErrorInterface {
+  message: String!
+}
+
+union ProductByIdResult = Product | CustomError
+

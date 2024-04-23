@@ -1,0 +1,29 @@
+.loading-indicator {
+  width: 100%;
+  height: 5px;
+  background-color: #e1e1e1;
+  margin: 0 auto;
+  margin-top: 30px;
+  z-index: 2;
+}
+
+.loading-indicator.hidden {
+  visibility: hidden;
+}
+
+.loading-indicator .bar {
+  width: 0px;
+  height: 5px;
+  background-color: #1ec4ff;
+  z-index: 1;
+  animation: loading-indicator-bar 5s ease-out infinite;
+}
+
+@keyframes loading-indicator-bar {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 100%;
+  }
+}
