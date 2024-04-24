@@ -17,6 +17,7 @@
     <Using Include="eShop.Catalog.Types.Configuration" />
     <Using Include="eShop.Catalog.Services" />
     <Using Include="eShop.Catalog.Migrations" />
+    <Using Include="eShop.Catalog.Api" />
     <Using Include="Microsoft.EntityFrameworkCore" />
   </ItemGroup>
 

@@ -1,0 +1,420 @@
+input ProductsBrandIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+type ClearBasketPayload {
+  deleted: Boolean
+}
+
+type Product implements Node {
+  imageUrl: URL!
+  internalId: Int!
+  brand: Brand
+  productType: ProductType
+  id: ID!
+  name: String!
+  description: String
+  price: Decimal!
+  imageFileName: String
+  type: ProductType
+  availableStock: Int!
+  restockThreshold: Int!
+  maxStockThreshold: Int!
+  onReorder: Boolean!
+}
+
+type Mutation {
+  addToBasket(input: AddToBasketInput!): AddToBasketPayload!
+  changeQuantity(input: ChangeQuantityInput!): ChangeQuantityPayload!
+  removeFromBasket(input: RemoveFromBasketInput!): RemoveFromBasketPayload!
+  clearBasket: ClearBasketPayload!
+  createBrand(input: CreateBrandInput!): CreateBrandPayload!
+  createProduct(input: CreateProductInput!): CreateProductPayload!
+}
+
+type Brand implements Node {
+  products(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductsConnection
+  id: ID!
+  name: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type ProductsConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [ProductsEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Product!]
+}
+
+input CreateBrandInput {
+  name: String!
+}
+
+type ChangeQuantityPayload {
+  shoppingBasket: ShoppingBasket
+  errors: [ChangeQuantityError!]
+}
+
+union AddToBasketError = QuantityCannotBeNegativeError
+
+"""
+An edge in a connection.
+"""
+type ProductsEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Product!
+}
+
+input ProductsTypeIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+interface Error {
+  message: String!
+}
+
+scalar URL @specifiedBy(url: "https://tools.ietf.org/html/rfc3986")
+
+"""
+A connection to a list of items.
+"""
+type BrandsConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [BrandsEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [Brand!]
+}
+
+type CreateBrandPayload {
+  brand: Brand
+}
+
+type Query {
+  """
+  Fetches an object given its ID.
+  """
+  node(
+    """
+    ID of the object.
+    """
+    id: ID!
+  ): Node
+
+  """
+  Lookup nodes by a list of IDs.
+  """
+  nodes(
+    """
+    The list of node IDs.
+    """
+    ids: [ID!]!
+  ): [Node]!
+  viewer: Viewer!
+  brands(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): BrandsConnection
+  brandById(id: ID!): Brand
+  brandByName(name: String!): Brand
+  products(
+    where: ProductsFilterInputTypeInput
+
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductsConnection
+  productById(id: ID!): Product
+  productTypes(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductTypesConnection
+  productTypeById(id: ID!): ProductType
+  productTypeByName(name: String!): ProductType
+}
+
+union ChangeQuantityError = QuantityCannotBeNegativeError | InvalidBasketItemId
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+  """
+  Indicates whether more edges exist following the set defined by the clients arguments.
+  """
+  hasNextPage: Boolean!
+
+  """
+  Indicates whether more edges exist prior the set defined by the clients arguments.
+  """
+  hasPreviousPage: Boolean!
+
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: String
+
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: String
+}
+
+type QuantityCannotBeNegativeError implements Error {
+  quantity: Int!
+  message: String!
+}
+
+input ProductsFilterInputTypeInput {
+  brandId: ProductsBrandIdFilterInputTypeInput
+  typeId: ProductsTypeIdFilterInputTypeInput
+}
+
+"""
+The node interface is implemented by entities that have a global unique identifier.
+"""
+interface Node {
+  id: ID!
+}
+
+union RemoveFromBasketError = InvalidBasketItemId
+
+input AddToBasketInput {
+  productId: ID!
+  quantity: Int!
+}
+
+"""
+An edge in a connection.
+"""
+type BrandsEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: Brand!
+}
+
+"""
+An edge in a connection.
+"""
+type ProductTypesEdge {
+  """
+  A cursor for use in pagination.
+  """
+  cursor: String!
+
+  """
+  The item at the end of the edge.
+  """
+  node: ProductType!
+}
+
+"""
+The built-in `Decimal` scalar type.
+"""
+scalar Decimal
+
+type CreateProductPayload {
+  product: Product
+}
+
+type Viewer {
+  username: String
+  basket: ShoppingBasket
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Decimal!
+  typeId: Int!
+  brandId: Int!
+  restockThreshold: Int!
+  maxStockThreshold: Int!
+}
+
+type InvalidBasketItemId implements Error {
+  id: String!
+  message: String!
+}
+
+"""
+A connection to a list of items.
+"""
+type ProductTypesConnection {
+  """
+  Information to aid in pagination.
+  """
+  pageInfo: PageInfo!
+
+  """
+  A list of edges.
+  """
+  edges: [ProductTypesEdge!]
+
+  """
+  A flattened list of the nodes.
+  """
+  nodes: [ProductType!]
+}
+
+input RemoveFromBasketInput {
+  id: String!
+}
+
+type RemoveFromBasketPayload {
+  shoppingBasket: ShoppingBasket
+  errors: [RemoveFromBasketError!]
+}
+
+type ProductType implements Node {
+  products(
+    """
+    Returns the first _n_ elements from the list.
+    """
+    first: Int
+
+    """
+    Returns the elements in the list that come after the specified cursor.
+    """
+    after: String
+
+    """
+    Returns the last _n_ elements from the list.
+    """
+    last: Int
+
+    """
+    Returns the elements in the list that come before the specified cursor.
+    """
+    before: String
+  ): ProductsConnection
+  id: ID!
+  name: String!
+}
+
+type ShoppingBasketItem {
+  id: String!
+  quantity: Int!
+  product: Product!
+}
+
+type AddToBasketPayload {
+  shoppingBasket: ShoppingBasket
+  errors: [AddToBasketError!]
+}
+
+input ChangeQuantityInput {
+  id: String!
+  quantity: Int!
+}
+
+type ShoppingBasket {
+  items: [ShoppingBasketItem!]!
+  id: ID!
+}
+
+

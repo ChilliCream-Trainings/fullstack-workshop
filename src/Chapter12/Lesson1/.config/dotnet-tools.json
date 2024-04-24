@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "dotnet-ef": {
+      "version": "8.0.2",
+      "commands": [
+        "dotnet-ef"
+      ]
+    },
+    "hotchocolate.fusion.commandline": {
+      "version": "14.0.0-p.53",
+      "commands": [
+        "fusion"
+      ]
+    }
+  }
+}

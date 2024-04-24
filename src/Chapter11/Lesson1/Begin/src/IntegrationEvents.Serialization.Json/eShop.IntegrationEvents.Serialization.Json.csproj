@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>eShop.IntegrationEvents</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IntegrationEvents.Abstractions\eShop.IntegrationEvents.Abstractions.csproj" />
+    <ProjectReference Include="..\IntegrationEvents\eShop.IntegrationEvents.csproj" />
+  </ItemGroup>
+
+</Project>

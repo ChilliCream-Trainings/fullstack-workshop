@@ -1,0 +1,6 @@
+{
+  "subgraph": "ordering-api",
+  "http": {
+    "baseAddress": "https://localhost:5222/graphql"
+  }
+}

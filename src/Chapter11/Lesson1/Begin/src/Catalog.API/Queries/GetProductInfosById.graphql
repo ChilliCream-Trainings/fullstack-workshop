@@ -1,0 +1,10 @@
+query GetProductInfosById($ids: [ID!]!) {
+  products: nodes(ids: $ids) {
+    ... on Product {
+      id
+      name
+      imageUrl
+      price
+    }
+  }
+}

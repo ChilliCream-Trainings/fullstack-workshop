@@ -80,6 +80,7 @@ In this workshop, we’ll introduce you to GraphQL and the major concepts behind
 ### 10:00 BREAK (5 min)
 
 ### 10:05 Mutations In Relay
+
 - Mutate data with Relay
 - Errors in Mutations
 - Optimistic Updates
@@ -87,9 +88,11 @@ In this workshop, we’ll introduce you to GraphQL and the major concepts behind
 ### 11:00 BREAK (5 min)
 
 ### 11:05 GraphQL Schema Evolution
+
 - Client Registry
 - Schema Registry
-- Open Telemetry 
+- Open Telemetry
+
 ### 12:00 BREAK (60 min)
 
 ### 13:00 Introduction to Distributed GraphQL

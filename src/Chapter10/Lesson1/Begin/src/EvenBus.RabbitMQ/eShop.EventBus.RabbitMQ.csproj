@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>eShop.EventBus</RootNamespace>
+        <IsAotCompatible>true</IsAotCompatible>
+
+        <EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.RabbitMQ.Client"/>
+        <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions"/>
+        <PackageReference Include="Polly" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EventBus\eShop.EventBus.csproj"/>
+        <ProjectReference Include="..\IntegrationEvents.Abstractions\eShop.IntegrationEvents.Abstractions.csproj"/>
+    </ItemGroup>
+
+</Project>

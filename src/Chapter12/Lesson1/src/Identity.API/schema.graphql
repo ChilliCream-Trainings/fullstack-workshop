@@ -1,0 +1,44 @@
+﻿schema {
+  query: Query
+}
+
+interface Error {
+  message: String!
+}
+
+"The node interface is implemented by entities that have a global unique identifier."
+interface Node {
+  id: ID!
+}
+
+type Query {
+  "Fetches an object given its ID."
+  node("ID of the object." id: ID!): Node
+  "Lookup nodes by a list of IDs."
+  nodes("The list of node IDs." ids: [ID!]!): [Node]!
+  userById(id: ID!): User
+  viewer: Viewer!
+}
+
+type User implements Node {
+  name: String!
+  lastName: String!
+  email: String
+  userName: String
+  id: ID!
+}
+
+type Viewer {
+  user: User
+  sessionId: String
+}
+
+"Defines when a policy shall be executed."
+enum ApplyPolicy {
+  "Before the resolver was executed."
+  BEFORE_RESOLVER
+  "After the resolver was executed."
+  AFTER_RESOLVER
+  "The policy is applied in the validation step before the execution."
+  VALIDATION
+}

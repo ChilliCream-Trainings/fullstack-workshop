@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>eShop.Ordering</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Using Include="eShop.Ordering"/>
+        <Using Include="eShop.EventBus"/>
+        <Using Include="Microsoft.EntityFrameworkCore"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\EvenBus.RabbitMQ\eShop.EventBus.RabbitMQ.csproj" />
+        <ProjectReference Include="..\Ordering.Application\eShop.Ordering.Application.csproj"/>
+        <ProjectReference Include="..\Ordering.Infrastructure\eShop.Ordering.Infrastructure.csproj" />
+        <ProjectReference Include="..\ServiceDefaults\eShop.ServiceDefaults.csproj"/>
+        <ProjectReference Include="..\Shared\eShop.Shared.csproj"/>
+    </ItemGroup>
+
+</Project>

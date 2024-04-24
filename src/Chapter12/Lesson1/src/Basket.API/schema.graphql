@@ -1,0 +1,101 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+interface Error {
+  message: String!
+}
+
+type AddToBasketPayload {
+  basket: Basket
+  errors: [AddToBasketError!]
+}
+
+type Basket {
+  items: [BasketItem!]!
+  id: ID!
+}
+
+type BasketItem {
+  id: String!
+  quantity: Int!
+  product: Product!
+}
+
+type ChangeQuantityPayload {
+  basket: Basket
+  errors: [ChangeQuantityError!]
+}
+
+type ClearBasketPayload {
+  deleted: Boolean
+}
+
+type InvalidBasketItemId implements Error {
+  id: String!
+  message: String!
+}
+
+type Mutation {
+  addToBasket(input: AddToBasketInput!): AddToBasketPayload! @authorize
+  changeQuantity(input: ChangeQuantityInput!): ChangeQuantityPayload! @authorize
+  removeFromBasket(input: RemoveFromBasketInput!): RemoveFromBasketPayload! @authorize
+  clearBasket: ClearBasketPayload! @authorize
+}
+
+type Product {
+  id: ID!
+}
+
+type QuantityCannotBeNegativeError implements Error {
+  quantity: Int!
+  message: String!
+}
+
+type Query {
+  viewer: Viewer!
+}
+
+type RemoveFromBasketPayload {
+  basket: Basket
+  errors: [RemoveFromBasketError!]
+}
+
+type Viewer {
+  username: String
+  basket: Basket
+}
+
+union AddToBasketError = QuantityCannotBeNegativeError
+
+union ChangeQuantityError = QuantityCannotBeNegativeError | InvalidBasketItemId
+
+union RemoveFromBasketError = InvalidBasketItemId
+
+input AddToBasketInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input ChangeQuantityInput {
+  id: String!
+  quantity: Int!
+}
+
+input RemoveFromBasketInput {
+  id: String!
+}
+
+"Defines when a policy shall be executed."
+enum ApplyPolicy {
+  "Before the resolver was executed."
+  BEFORE_RESOLVER
+  "After the resolver was executed."
+  AFTER_RESOLVER
+  "The policy is applied in the validation step before the execution."
+  VALIDATION
+}
+
+"The authorize directive."
+directive @authorize("The name of the authorization policy that determines access to the annotated resource." policy: String "Roles that are allowed to access the annotated resource." roles: [String!] "Defines when when the authorize directive shall be applied.By default the authorize directives are applied during the validation phase." apply: ApplyPolicy! = BEFORE_RESOLVER) repeatable on OBJECT | FIELD_DEFINITION

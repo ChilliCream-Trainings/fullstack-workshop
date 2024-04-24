@@ -81,9 +81,9 @@ While we won't dive deep into error boundaries here, you can learn more about th
 In Relay, there are several strategies to retry queries after an error. You can explore these patterns further in the [Relay documentation](https://relay.dev/docs/guided-tour/rendering/error-states/).  
 
 ## Tasks
-- Follow the steps outlined in this lesson to improve the user experience.
-- Try to simulate an error and observe the behavior.
-- Are there any other places in the application where we should add error boundaries?
-- Do you notice something about the graphql request we do, when we change the brand?  Do you know why this happens?
+1. Try to follow the steps outlined in this lesson
+1. Try to simulate an error and observe the behavior.
+1. Are there any other places in the application where we should add error boundaries?
+1. Do you notice something about the graphql request we do, when we change the brand?  Do you know why this happens?
 
 

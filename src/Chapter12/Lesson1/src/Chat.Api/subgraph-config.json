@@ -1,0 +1,6 @@
+{
+  "subgraph": "chat-api",
+  "http": {
+    "baseAddress": "https://localhost:5233/graphql"
+  }
+}

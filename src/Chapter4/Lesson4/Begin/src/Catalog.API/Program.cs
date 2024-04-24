@@ -11,12 +11,7 @@ builder.Services
     .AddScoped<BrandService>()
     .AddScoped<ProductService>()
     .AddScoped<ProductTypeService>()
-    .AddTransient<CatalogContextOwner>(sp =>
-    {
-        var scope = sp.CreateAsyncScope();
-        var context = scope.ServiceProvider.GetRequiredService<CatalogContext>();
-        return new CatalogContextOwner(scope, context);
-    });
+    .AddSingleton<ImageStorage>();
 
 builder.Services
     .AddGraphQLServer()
@@ -26,5 +21,6 @@ builder.Services
 var app = builder.Build();
 
 app.MapGraphQL();
+app.MapProductApi();
 
 app.RunWithGraphQLCommands(args);

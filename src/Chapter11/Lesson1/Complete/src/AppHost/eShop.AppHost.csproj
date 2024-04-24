@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>70cce715-386d-462a-808b-2a1e0800de47</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" />
+    <PackageReference Include="Aspire.Hosting.Redis" />
+    <PackageReference Include="HotChocolate.Fusion.Aspire" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Basket.API\eShop.Basket.API.csproj" />
+    <ProjectReference Include="..\Catalog.API\eShop.Catalog.API.csproj" />
+    <ProjectReference Include="..\Gateway\eShop.Gateway.csproj" />
+  </ItemGroup>
+
+</Project>

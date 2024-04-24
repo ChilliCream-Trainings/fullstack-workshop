@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EventBus\eShop.EventBus.csproj" />
+    <ProjectReference Include="..\IntegrationEvents\eShop.IntegrationEvents.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\eShop.Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Shared\eShop.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GreenDonut" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="FluentValidation.AspNetCore" />
+    <PackageReference Include="HotChocolate.Data.EntityFramework.Helpers" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Telemetry.Abstractions" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Using Include="MediatR" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="HotChocolate.Data" />
+    <Using Include="eShop.EventBus.Extensions" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Orders\Commands\" />
+  </ItemGroup>
+
+</Project>

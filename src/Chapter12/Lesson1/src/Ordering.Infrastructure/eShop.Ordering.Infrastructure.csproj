@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="eShop.Ordering.Infrastructure.Tests"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\IntegrationEvents.EntityFramework.Postgres\eShop.IntegrationEvents.EntityFramework.Postgres.csproj"/>
+        <ProjectReference Include="..\Ordering.Application\eShop.Ordering.Application.csproj"/>
+        <ProjectReference Include="..\Ordering.Domain\eShop.Ordering.Domain.csproj"/>
+        <ProjectReference Include="..\Shared\eShop.Shared.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Aspire.Npgsql" />
+        <PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL"/>
+        <PackageReference Include="HotChocolate.Transport.Http"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

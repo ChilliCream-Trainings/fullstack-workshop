@@ -1,0 +1,206 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+interface Error {
+  message: String!
+}
+
+"The node interface is implemented by entities that have a global unique identifier."
+interface Node {
+  id: ID!
+}
+
+type Address {
+  street: String!
+  city: String!
+  state: String!
+  zipCode: String!
+  country: String!
+}
+
+type CancelOrderPayload {
+  canceledOrderId: Int
+  errors: [CancelOrderError!]
+}
+
+type CreateOrderPayload {
+  order: Order
+  errors: [CreateOrderError!]
+}
+
+type InvalidProductIdError implements Error {
+  message: String!
+  productId: ID!
+}
+
+type Mutation {
+  createOrder(input: CreateOrderInput!): CreateOrderPayload!
+  cancelOrder(input: CancelOrderInput!): CancelOrderPayload!
+  setAwaitingValidationStatus(input: SetAwaitingValidationStatusInput!): SetAwaitingValidationStatusPayload!
+}
+
+type NoOrderFoundError implements Error {
+  orderId: Int!
+  message: String!
+}
+
+type Order implements Node {
+  id: ID!
+  userId: String!
+  date: DateTime!
+  status: OrderStatus!
+  description: String
+  address: Address
+  items: [OrderItem!]
+  total: Decimal!
+}
+
+type OrderItem {
+  product: Product!
+  units: Int!
+  unitPrice: Decimal!
+}
+
+type OrderNotFoundError implements Error {
+  orderId: Int!
+  message: String!
+}
+
+"A connection to a list of items."
+type OrdersConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [OrdersEdge!]
+  "A flattened list of the nodes."
+  nodes: [Order!]
+}
+
+"An edge in a connection."
+type OrdersEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Order!
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type PriceChangedError implements Error {
+  product: Product!
+  message: String!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  imageUrl: URL!
+}
+
+type Query {
+  "Fetches an object given its ID."
+  node("ID of the object." id: ID!): Node
+  "Lookup nodes by a list of IDs."
+  nodes("The list of node IDs." ids: [ID!]!): [Node]!
+  viewer: Viewer!
+  orderById(orderId: ID!): Order
+}
+
+type SetAwaitingValidationStatusPayload {
+  order: Order
+  errors: [SetAwaitingValidationStatusError!]
+}
+
+type Viewer {
+  orders("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): OrdersConnection
+}
+
+union CancelOrderError = NoOrderFoundError
+
+union CreateOrderError = PriceChangedError | InvalidProductIdError
+
+union SetAwaitingValidationStatusError = OrderNotFoundError
+
+input AddressInput {
+  city: String!
+  street: String!
+  state: String!
+  country: String!
+  zipCode: String!
+}
+
+input CancelOrderInput {
+  orderId: Int!
+}
+
+input CreateOrderInput {
+  address: AddressInput!
+  paymentMethod: PaymentMethodInput!
+  items: [OrderItemInput!]!
+}
+
+input OrderItemInput {
+  productId: ID!
+  unitPrice: Decimal!
+  units: Int!
+}
+
+input PaymentMethodInput {
+  cardNumber: String!
+  securityNumber: String!
+  cardHolderName: String!
+  cardType: CardType!
+  expiration: Date!
+}
+
+input SetAwaitingValidationStatusInput {
+  orderId: Int!
+}
+
+"Defines when a policy shall be executed."
+enum ApplyPolicy {
+  "Before the resolver was executed."
+  BEFORE_RESOLVER
+  "After the resolver was executed."
+  AFTER_RESOLVER
+  "The policy is applied in the validation step before the execution."
+  VALIDATION
+}
+
+enum CardType {
+  AMEX
+  VISA
+  MASTER_CARD
+}
+
+enum OrderStatus {
+  SUBMITTED
+  AWAITING_VALIDATION
+  STOCK_CONFIRMED
+  PAID
+  SHIPPED
+  CANCELLED
+}
+
+"The `Date` scalar represents an ISO-8601 compliant date type."
+scalar Date
+
+"The `DateTime` scalar represents an ISO-8601 compliant date time type."
+scalar DateTime @specifiedBy(url: "https:\/\/www.graphql-scalars.com\/date-time")
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+scalar URL @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc3986")

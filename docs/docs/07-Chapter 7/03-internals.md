@@ -115,8 +115,8 @@ module.exports = {
 ```
 
 ## Tasks
-- Checkout the `src/relay-network.ts` file and understand how the relay environment is created
-- Our backend needs a header with the client version. Add this header to each request to the server.
+1. Checkout the `src/relay-network.ts` file and understand how the relay environment is created
+1. Our backend needs a header with the client version. Add this header to each request to the server.
 
 
 

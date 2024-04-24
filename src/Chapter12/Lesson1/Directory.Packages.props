@@ -1,0 +1,97 @@
+
+
+<Project>
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="Aspire.Hosting" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Npgsql" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.RabbitMQ.Client" Version="8.0.0-preview.6.24214.1" />
+
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.HeaderPropagation" Version="7.0.9" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.3" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3" />
+    <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+  
+    <PackageVersion Include="System.Text.Json" Version="8.0.3" />
+  
+    <PackageVersion Include="BananaCakePop.Services" Version="3.2.0" />
+    <PackageVersion Include="CookieCrumble" Version="14.0.0-p.93" />
+    <PackageVersion Include="GreenDonut" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.AspNetCore" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.AspNetCore.Authorization" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.AspNetCore.CommandLine" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Diagnostics" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Fusion" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Fusion.Aspire" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Types.Analyzers" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Transport.Http" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.PersistedQueries.FileSystem" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Data" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Data.EntityFramework" Version="14.0.0-p.93" />
+    <PackageVersion Include="HotChocolate.Data.EntityFramework.Helpers" Version="14.0.0-p.93" />
+  
+    <PackageVersion Include="Azure.AI.OpenAI" Version="1.0.0-beta.12" />
+    <PackageVersion Include="Pgvector" Version="0.2.0" />
+    <PackageVersion Include="Pgvector.EntityFrameworkCore" Version="0.2.0" />
+  
+    <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2" />
+    <PackageVersion Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Telemetry.Abstractions" Version="8.3.0" />
+  
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.8.1" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.8.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.GrpcNetClient" Version="1.8.0-beta.1" />
+  
+    <PackageVersion Include="Polly" Version="8.3.0" />
+
+    <!-- VS Test -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+
+    <!-- IdentityServer -->
+    <PackageVersion Include="Duende.IdentityServer" Version="6.3.5" />
+    <PackageVersion Include="Duende.IdentityServer.AspNetIdentity" Version="6.3.5" />
+    <PackageVersion Include="Duende.IdentityServer.EntityFramework" Version="6.3.5" />
+    <PackageVersion Include="Duende.IdentityServer.EntityFramework.Storage" Version="6.3.5" />
+    <PackageVersion Include="Duende.IdentityServer.Storage" Version="6.3.5" />
+    <PackageVersion Include="Duende.Bff" Version="2.2.0" />
+    <PackageVersion Include="Duende.Bff.Yarp" Version="2.2.0" />
+
+    <!-- Miscellaneous -->
+    <PackageVersion Include="Automapper" Version="12.0.1" />
+    <PackageVersion Include="Dapper" Version="2.0.151" />
+    <PackageVersion Include="FluentValidation.AspNetCore" Version="11.3.0" />
+    <PackageVersion Include="MediatR" Version="12.2.0" />
+    <PackageVersion Include="Microsoft.Web.LibraryManager.Build" Version="2.1.175" />
+    <PackageVersion Include="Squadron.PostgreSql" Version="0.18.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageVersion Include="System.Reflection.TypeExtensions" Version="4.7.0" />
+    <PackageVersion Include="xunit" Version="2.5.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.1" />
+    <PackageVersion Include="Yarp.ReverseProxy" Version="2.1.0" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.0" />
+  </ItemGroup>
+</Project>

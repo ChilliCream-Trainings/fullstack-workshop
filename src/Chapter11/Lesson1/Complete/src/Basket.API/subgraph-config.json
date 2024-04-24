@@ -1,0 +1,6 @@
+{
+  "subgraph": "basket-api",
+  "http": {
+    "baseAddress": "https://localhost:5221/graphql"
+  }
+}

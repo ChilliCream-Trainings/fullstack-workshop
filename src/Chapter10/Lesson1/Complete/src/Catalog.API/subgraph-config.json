@@ -1,0 +1,6 @@
+{
+  "subgraph": "catalog-api",
+  "http": {
+    "baseAddress": "https://localhost:5224/graphql"
+  }
+}

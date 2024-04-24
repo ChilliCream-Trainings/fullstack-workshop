@@ -1,0 +1,263 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+interface Error {
+  message: String!
+}
+
+"The node interface is implemented by entities that have a global unique identifier."
+interface Node {
+  id: ID!
+}
+
+type Brand implements Node {
+  id: ID!
+  name: String!
+  products("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ProductsConnection
+}
+
+type BrandNotFoundError implements Error {
+  message: String!
+  productTypeId: ID!
+}
+
+"A connection to a list of items."
+type BrandsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [BrandsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Brand!]
+}
+
+"An edge in a connection."
+type BrandsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Brand!
+}
+
+type CreateBrandPayload {
+  brand: Brand
+}
+
+type CreateProductPayload {
+  product: Product
+  errors: [CreateProductError!]
+}
+
+type CreateProductTypePayload {
+  productType: ProductType
+}
+
+type DeleteBrandPayload {
+  deletedBrandId: Int
+  errors: [DeleteBrandError!]
+}
+
+type DeleteProductTypePayload {
+  deletedProductTypeId: Int
+  errors: [DeleteProductTypeError!]
+}
+
+type FileExtensionNotAllowedError implements Error {
+  message: String!
+  extension: String!
+  allowedExtensions: [String!]!
+}
+
+type MaxStockThresholdToLowError implements Error {
+  message: String!
+  minimumMaxStockThreshold: Int!
+}
+
+type Mutation {
+  createBrand(input: CreateBrandInput!): CreateBrandPayload!
+  renameBrand(input: RenameBrandInput!): RenameBrandPayload!
+  deleteBrand(input: DeleteBrandInput!): DeleteBrandPayload!
+  createProduct(input: CreateProductInput!): CreateProductPayload!
+  createProductType(input: CreateProductTypeInput!): CreateProductTypePayload!
+  renameProductType(input: RenameProductTypeInput!): RenameProductTypePayload!
+  deleteProductType(input: DeleteProductTypeInput!): DeleteProductTypePayload!
+}
+
+"Information about pagination in a connection."
+type PageInfo {
+  "Indicates whether more edges exist following the set defined by the clients arguments."
+  hasNextPage: Boolean!
+  "Indicates whether more edges exist prior the set defined by the clients arguments."
+  hasPreviousPage: Boolean!
+  "When paginating backwards, the cursor to continue."
+  startCursor: String
+  "When paginating forwards, the cursor to continue."
+  endCursor: String
+}
+
+type Product implements Node {
+  id: ID!
+  name: String!
+  description: String
+  price: Decimal!
+  availableStock: Int!
+  restockThreshold: Int!
+  maxStockThreshold: Int!
+  onReorder: Boolean!
+  imageUrl: URL!
+  type: ProductType!
+  brand: Brand!
+}
+
+type ProductType implements Node {
+  id: ID!
+  name: String!
+  products("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ProductsConnection
+}
+
+type ProductTypeNotFoundError implements Error {
+  message: String!
+  productTypeId: ID!
+}
+
+"A connection to a list of items."
+type ProductTypesConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ProductTypesEdge!]
+  "A flattened list of the nodes."
+  nodes: [ProductType!]
+}
+
+"An edge in a connection."
+type ProductTypesEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: ProductType!
+}
+
+"A connection to a list of items."
+type ProductsConnection {
+  "Information to aid in pagination."
+  pageInfo: PageInfo!
+  "A list of edges."
+  edges: [ProductsEdge!]
+  "A flattened list of the nodes."
+  nodes: [Product!]
+}
+
+"An edge in a connection."
+type ProductsEdge {
+  "A cursor for use in pagination."
+  cursor: String!
+  "The item at the end of the edge."
+  node: Product!
+}
+
+type Query {
+  "Fetches an object given its ID."
+  node("ID of the object." id: ID!): Node
+  "Lookup nodes by a list of IDs."
+  nodes("The list of node IDs." ids: [ID!]!): [Node]!
+  brandById(id: ID!): Brand!
+  brandByName(name: String!): Brand!
+  brands("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): BrandsConnection
+  productById(id: ID!): Product!
+  products(where: ProductsFilterInputTypeInput "Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ProductsConnection
+  productTypeById(id: ID!): ProductType!
+  productTypeByName(name: String!): ProductType!
+  productTypes("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String): ProductTypesConnection
+}
+
+type RenameBrandPayload {
+  brand: Brand
+  errors: [RenameBrandError!]
+}
+
+type RenameProductTypePayload {
+  productType: ProductType
+  errors: [RenameProductTypeError!]
+}
+
+union CreateProductError = MaxStockThresholdToLowError | FileExtensionNotAllowedError
+
+union DeleteBrandError = BrandNotFoundError
+
+union DeleteProductTypeError = ProductTypeNotFoundError
+
+union RenameBrandError = BrandNotFoundError
+
+union RenameProductTypeError = ProductTypeNotFoundError
+
+input CreateBrandInput {
+  name: String!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Decimal!
+  image: Upload
+  typeId: ID!
+  brandId: ID!
+  restockThreshold: Int!
+  maxStockThreshold: Int!
+}
+
+input CreateProductTypeInput {
+  name: String!
+}
+
+input DeleteBrandInput {
+  id: Int!
+}
+
+input DeleteProductTypeInput {
+  id: Int!
+}
+
+input ProductsBrandIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+input ProductsFilterInputTypeInput {
+  name: ProductsNameFilterInputTypeInput
+  brandId: ProductsBrandIdFilterInputTypeInput
+  typeId: ProductsTypeIdFilterInputTypeInput
+}
+
+input ProductsNameFilterInputTypeInput {
+  in: [String!]
+}
+
+input ProductsTypeIdFilterInputTypeInput {
+  in: [ID!]
+}
+
+input RenameBrandInput {
+  id: Int!
+  name: String!
+}
+
+input RenameProductTypeInput {
+  id: ID!
+  name: String!
+}
+
+enum ApplyPolicy {
+  BEFORE_RESOLVER
+  AFTER_RESOLVER
+  VALIDATION
+}
+
+"The built-in `Decimal` scalar type."
+scalar Decimal
+
+scalar URL @specifiedBy(url: "https:\/\/tools.ietf.org\/html\/rfc3986")
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload
