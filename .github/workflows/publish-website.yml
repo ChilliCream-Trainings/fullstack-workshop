@@ -1,6 +1,5 @@
 name: Publish Website
 
-# When to trigger the workflow
 on:
   push:
     branches:
@@ -27,24 +26,13 @@ jobs:
           username: ${{ secrets.CONTAINER_REG_USERNAME }}
           password: ${{ secrets.CONTAINER_REG_PASSWORD }}
 
-      - run: echo ${{ secrets.CONTAINER_REG_URL }}
-
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20.x"
-          cache: "yarn"
-          cache-dependency-path: "docs/yarn.lock"
 
-      - name: Cache Yarn Packages
-        uses: actions/cache@v4
-        with:
-          path: |
-            docs/.yarn/cache
-            docs/.cache/yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('docs/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Install Packages
         run: yarn --immutable --network-timeout 100000
