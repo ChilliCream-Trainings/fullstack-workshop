@@ -4,10 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - .github/workflows/publish-website.yml
-      - .docker/website/**
-      - website/**
 
 jobs:
   build-and-deploy:
