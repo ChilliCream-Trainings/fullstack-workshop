@@ -23,4 +23,4 @@ Lastly, for the client-related parts of the workshop, you will need to install t
 To get started, clone the workshop repository. Open a terminal on your system and navigate to a location where you want to store the repository.
 
 ```bash
-git clone https://github.com/ChilliCream/workshops.git
+git clone https://github.com/ChilliCream-Trainings/fullstack-workshop.git
