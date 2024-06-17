@@ -39,7 +39,7 @@ jobs:
         working-directory: docs
 
       - name: Build Website
-        run: yarn build --prefix-paths
+        run: yarn build
         working-directory: docs
 
       - name: Build WebSite Container
