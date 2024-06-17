@@ -48,7 +48,7 @@ jobs:
           context: .
           file: docs/dockerfile
           push: true
-          tags: ${{ secrets.CONTAINER_REG_DOMAIN }}/ccc-fullstack-workshop-${{ github.ref_name }}:${{ github.run_id }}
+          tags: ${{ secrets.CONTAINER_REG_URL }}/ccc-fullstack-workshop-${{ github.ref_name }}:${{ github.run_id }}
 
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
@@ -56,4 +56,4 @@ jobs:
           app-name: ccc-p-us1-website
           slot-name: "production"
           publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-          images: ${{ secrets.CONTAINER_REG_DOMAIN }}/ccc-fullstack-workshop-${{ github.ref_name }}:${{ github.run_id }}
+          images: ${{ secrets.CONTAINER_REG_URL }}/ccc-fullstack-workshop-${{ github.ref_name }}:${{ github.run_id }}
