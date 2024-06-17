@@ -24,3 +24,4 @@ To get started, clone the workshop repository. Open a terminal on your system an
 
 ```bash
 git clone https://github.com/ChilliCream-Trainings/fullstack-workshop.git
+```
