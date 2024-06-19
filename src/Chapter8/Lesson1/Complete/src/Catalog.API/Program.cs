@@ -28,6 +28,8 @@ builder.Services
 
 var app = builder.Build();
 
+app.MapDefaultEndpoints();
+
 app.MapGraphQL();
 
 app.MapProductApi();
