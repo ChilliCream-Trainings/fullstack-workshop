@@ -19,6 +19,7 @@
     <Using Include="eShop.Catalog.Migrations" />
     <Using Include="eShop.SessionManagement" />
     <Using Include="Microsoft.EntityFrameworkCore" />
+    <Using Include="HotChocolate.Pagination" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,9 +40,5 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\ServiceDefaults\eShop.ServiceDefaults.csproj" />
-  </ItemGroup>
-
+  
 </Project>

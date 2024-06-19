@@ -1,3 +1,4 @@
+using HotChocolate.Pagination;
 using HotChocolate.Types.Pagination;
 
 namespace eShop.Catalog.Types;
