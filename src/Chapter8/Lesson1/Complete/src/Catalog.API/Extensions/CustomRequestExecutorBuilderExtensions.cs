@@ -10,8 +10,9 @@ public static class CustomRequestExecutorBuilderExtensions
         builder.AddMutationConventions();
         builder.AddPagingArguments();
         builder.AddGlobalObjectIdentification();
-        builder.UseInstrumentation()
-        builder.AddParameterExpressionBuilder(ctx => ctx.GetGlobalStateOrDefault<UserInfo>(nameof(UserInfo)));
+        builder.UseInstrumentation();
+        builder.AddParameterExpressionBuilder(ctx =>
+            ctx.GetGlobalStateOrDefault<UserInfo>(nameof(UserInfo)));
         return builder;
-    } 
+    }
 }
