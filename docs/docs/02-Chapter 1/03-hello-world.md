@@ -13,7 +13,7 @@ This directory is actually completely empty since we will start from scratch.
 Next, we will install the Hot Chocolate templates for .NET.
 
 ```bash
-dotnet new -i HotChocolate.Templates::14.0.0-p.106
+dotnet new -i HotChocolate.Templates::14.0.0-p.107
 ```
 
 You should now see the Hot Chocolate templates listed in the console output.

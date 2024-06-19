@@ -9,7 +9,7 @@ To streamline this process, Hot Chocolate introduces a feature called "type auto
 To utilize type auto registration, add the `HotChocolate.Types.Analyzer` package to your project. This package automatically generates the type registration code.
 
 ```xml
-<PackageReference Include="HotChocolate.Types.Analyzers" Version="14.0.0-p.106">
+<PackageReference Include="HotChocolate.Types.Analyzers" Version="14.0.0-p.107">
     <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     <PrivateAssets>all</PrivateAssets>
 </PackageReference>

@@ -7,7 +7,7 @@ However, this necessitates a mapping between the business layer's understanding 
 For this, you can add the `HotChocolate.Data.EntityFramework.Helpers` package to your service layer project.
 
 ```xml
-<PackageReference Include="HotChocolate.Data.EntityFramework.Helpers" Version="14.0.0-p.106" />
+<PackageReference Include="HotChocolate.Data.EntityFramework.Helpers" Version="14.0.0-p.107" />
 ```
 
 This package introduces the `Page<T>` struct, which represents one page of the data set. It also introduces the `PagingArguments` struct that represents the paging arguments.
@@ -32,7 +32,7 @@ With cursor-based paging or keyset paging, order is important. At the very least
 The GraphQL layer itself has a type called `Connection<T>` that represents a page of data. To map the `Page<T>` struct to the `Connection<T>` type, we must add another package that handles this for us. This package belongs to your GraphQL layer and references the helpers.
 
 ```xml
-<PackageReference Include="HotChocolate.Data.EntityFramework" Version="14.0.0-p.106" />
+<PackageReference Include="HotChocolate.Data.EntityFramework" Version="14.0.0-p.107" />
 ```
 
 Now in our resolver code, we can inject the `PagingArguments` struct as an argument and map the `Page<T>` struct to the `Connection<T>` type.
