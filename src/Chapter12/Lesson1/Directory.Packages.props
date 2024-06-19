@@ -6,14 +6,14 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Aspire.Hosting" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.StackExchange.Redis" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Npgsql" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Aspire.Hosting" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Hosting.AppHost" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Hosting.Redis" Version="8.0.0" />
+    <PackageVersion Include="Aspire.StackExchange.Redis" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Npgsql" Version="8.0.0" />
+    <PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
     <PackageVersion Include="Aspire.RabbitMQ.Client" Version="8.0.0-preview.6.24214.1" />
 
     <PackageVersion Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
@@ -50,8 +50,8 @@
   
     <PackageVersion Include="Microsoft.Extensions.Logging" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="8.3.0" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0-preview.5.24201.12" />
-    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="8.0.0-preview.5.24201.12" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="8.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery.Yarp" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.Extensions.Options" Version="8.0.2" />
