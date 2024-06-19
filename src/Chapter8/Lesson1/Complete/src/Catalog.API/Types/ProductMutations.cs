@@ -3,6 +3,8 @@ namespace eShop.Catalog.Types;
 [MutationType]
 public static class ProductMutations
 {
+    [Error<InvalidRestockThresholdException>]
+    [Error<InvalidPriceException>]
     public static async Task<Product> CreateProductAsync(
         CreateProductInput input,
         ProductService productService,

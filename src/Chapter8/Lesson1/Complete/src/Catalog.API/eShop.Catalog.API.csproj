@@ -18,6 +18,7 @@
     <Using Include="eShop.Catalog.Services" />
     <Using Include="eShop.Catalog.Migrations" />
     <Using Include="eShop.SessionManagement" />
+    <Using Include="HotChocolate.Pagination" />
     <Using Include="Microsoft.EntityFrameworkCore" />
   </ItemGroup>
 
