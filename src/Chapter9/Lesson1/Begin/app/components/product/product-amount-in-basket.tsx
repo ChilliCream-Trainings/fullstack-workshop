@@ -4,7 +4,7 @@ import { graphql, useFragment } from "react-relay";
 
 interface ProductAmountInBasketProps {
   productId: string;
-  $ref?: productAmountInBasket_basket$key;
+  $ref?: productAmountInBasket_basket$key | null;
 }
 export function ProductAmountInBasket({
   productId,

@@ -24,7 +24,8 @@ builder.Services.AddSingleton<ImageStorage>();
 builder.Services
     .AddGraphQLServer()
     .AddCatalogTypes()
-    .AddGraphQLConventions();
+    .AddGraphQLConventions()
+    .UseDefaultPipeline();
 
 var app = builder.Build();
 
